@@ -55,7 +55,7 @@ app.get("/api/messages", async (req, res) => {
 
 app.delete('/api/messages', async (req, res) => {
   try {
-    await Message.deleteMany({});
+    await Data.deleteMany({ role: { $ne: 'system' } });
     res.status(200).json({ message: 'All messages deleted' });
   } catch (error) {
     console.error('Error deleting messages:', error);

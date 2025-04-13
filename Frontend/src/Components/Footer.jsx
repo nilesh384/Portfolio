@@ -1,0 +1,19 @@
+const Footer = () => {
+  return (
+    <footer className="mt- pt-10 bg-black text-white pb-10">
+      <hr className="border-t border-purple-600 mx-20" />
+      <div className="text-center mt-8 space-y-4">
+        <div className="flex justify-center gap-6 text-sm text-gray-300">
+          <a href="#" className="hover:text-purple-400 transition">Conditions of Use</a>
+          <a href="#" className="hover:text-purple-400 transition">Privacy Notice</a>
+          <a href="#" className="hover:text-purple-400 transition">Your Ads Privacy Choices</a>
+        </div>
+        <p className="text-gray-400 text-sm">
+          © 1996-2024, Codex.com, Inc. or its affiliates
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
