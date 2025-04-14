@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { Trash2 } from "lucide-react";
 
 function Chatbot({ onClose }) {
-  const [question, setQuestion] = useState("");
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState("");
   const chatEndRef = useRef(null);
 
-  // 🔁 Ensure each user gets a persistent, unique userId
+  // 🔁 Generate or retrieve persistent unique user ID
   useEffect(() => {
     let id = localStorage.getItem("chatbot_userId");
     if (!id) {
@@ -18,12 +18,20 @@ function Chatbot({ onClose }) {
     setUserId(id);
   }, []);
 
+  // 📨 Fetch messages once userId is ready
+  useEffect(() => {
+    if (!userId) return;
+    fetchMessages();
+  }, [userId]);
+
   const fetchMessages = async () => {
-    const res = await fetch(
-      `https://portfolio-amber-ten-47.vercel.app/api/messages?userId=${userId}`
-    );
-    const data = await res.json();
-    setMessages(data);
+    try {
+      const res = await fetch(`https://portfolio-amber-ten-47.vercel.app/api/messages?userId=${userId}`);
+      const data = await res.json();
+      setMessages(data);
+    } catch (err) {
+      console.error("❌ Failed to fetch messages:", err);
+    }
   };
 
   const handleClear = async () => {
@@ -33,13 +41,9 @@ function Chatbot({ onClose }) {
       });
       setMessages([]);
     } catch (err) {
-      console.error("Error clearing chat:", err);
+      console.error("❌ Error clearing chat:", err);
     }
   };
-
-  useEffect(() => {
-    fetchMessages();
-  }, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -47,21 +51,22 @@ function Chatbot({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!message.trim()) return;
     setLoading(true);
 
     try {
       await fetch("https://portfolio-amber-ten-47.vercel.app/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question, userId }),
+        body: JSON.stringify({ message, userId }),
       });
       await fetchMessages();
     } catch (err) {
-      console.error(err);
+      console.error("❌ Failed to send message:", err);
     }
 
     setLoading(false);
-    setQuestion("");
+    setMessage("");
   };
 
   return (
@@ -109,25 +114,21 @@ function Chatbot({ onClose }) {
 
       <button
         onClick={handleClear}
-        className="absolute right-[70px] top-[20px] z-[1000]  text-white text-lg p-1 rounded-md flex items-center justify-center transition-transform duration-300 hover:bg-red-400 hover:cursor-pointer hover:scale-110"
+        className="absolute right-[70px] top-[20px] z-[1000] text-white text-lg p-1 rounded-md flex items-center justify-center transition-transform duration-300 hover:bg-red-400 hover:cursor-pointer hover:scale-110"
       >
         <Trash2 color="white" size={20} />
       </button>
 
-      <form
-        onSubmit={handleSubmit}
-        onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSubmit(e)}
-        className="flex flex-col gap-2"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <textarea
           className="border border-gray-600 bg-gray-800 text-white rounded-xl p-3 min-h-[80px] resize-none text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Ask me anything..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
         <button
           type="submit"
-          disabled={loading || !question.trim()}
+          disabled={loading || !message.trim()}
           className="bg-gradient-to-r from-blue-700 to-blue-900 text-white px-4 py-3 text-base font-semibold rounded-xl hover:from-blue-800 hover:to-blue-950 transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? (
