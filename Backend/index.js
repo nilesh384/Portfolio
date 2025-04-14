@@ -26,19 +26,19 @@ try{
 
 app.post("/api/content", async (req, res) => {
   try {
-    const userQuestion = req.body.question;
+    const {question, userId} = req.body;
 
     // Save user question to DB
-    await Data.create({ role: "user", message: userQuestion });
+    await Data.create({ userId  ,role: "user", message: question });
 
     // Get all messages so far
-    const messages = await Data.find().sort({ timestamp: 1 });
+    const messages = await Data.find({userId}).sort({ timestamp: 1 });
 
     // Get AI response based on full conversation
     const aiResponse = await main(messages);
 
     // Save AI response to DB
-    await Data.create({ role: "ai", message: aiResponse });
+    await Data.create({ userId ,role: "ai", message: aiResponse });
 
     res.send({ result: aiResponse });
   } catch (err) {
@@ -49,13 +49,15 @@ app.post("/api/content", async (req, res) => {
 
 
 app.get("/api/messages", async (req, res) => {
-  const messages = await Data.find().sort({ timestamp: 1 });
+  const userId = req.query.userId;
+  const messages = await Data.find({userId}).sort({ timestamp: 1 });
   res.send(messages);
 });
 
 app.delete('/api/messages', async (req, res) => {
+  const userId = req.query.userId;
   try {
-    await Data.deleteMany({ role: { $ne: 'system' } });
+    await Data.deleteMany({userId, role: { $ne: 'system' } });
     res.status(200).json({ message: 'All messages deleted' });
   } catch (error) {
     console.error('Error deleting messages:', error);
