@@ -37,7 +37,7 @@ const Landing = () => {
 
           <div className="w-1/3">
             <img
-              src="src/Assets/dev1.png"
+              src="/assets/dev1.png"
               alt="developer"
               className="h-[55vh] w-full mt-4 drop-shadow-[5px_5px_20px_rgba(102,6,150,0.797)]"
             />
