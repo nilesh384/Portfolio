@@ -20,7 +20,7 @@ function Chatbot({ onClose }) {
 
   const fetchMessages = async () => {
     const res = await fetch(
-      `http://localhost:8000/api/messages?userId=${userId}`
+      `https://portfolio-amber-ten-47.vercel.app/api/messages?userId=${userId}`
     );
     const data = await res.json();
     setMessages(data);
@@ -28,7 +28,7 @@ function Chatbot({ onClose }) {
 
   const handleClear = async () => {
     try {
-      await fetch(`http://localhost:8000/api/messages?userId=${userId}`, {
+      await fetch(`https://portfolio-amber-ten-47.vercel.app/api/messages?userId=${userId}`, {
         method: "DELETE",
       });
       setMessages([]);
@@ -50,7 +50,7 @@ function Chatbot({ onClose }) {
     setLoading(true);
 
     try {
-      await fetch("http://localhost:8000/api/content", {
+      await fetch("https://portfolio-amber-ten-47.vercel.app/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question, userId }),

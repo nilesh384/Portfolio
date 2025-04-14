@@ -20,8 +20,9 @@ app.use(cors());
 
 // Connect to MongoDB
 try{
-    mongoose.connect(process.env.MONGO_DB_URI);
-    console.log("Connected to MongoDB")
+  mongoose.connect(`${process.env.MONGO_DB_URI}/${process.env.DB_NAME}`)
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 }catch(err){console.log(err)}
 
 app.post("/api/content", async (req, res) => {
