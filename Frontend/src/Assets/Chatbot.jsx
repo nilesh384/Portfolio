@@ -26,7 +26,7 @@ function Chatbot({ onClose }) {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/messages?userId=${userId}`);
+      const res = await fetch(`https://nilesh-portfolio.up.railway.app/api/messages?userId=${userId}`);
       const data = await res.json();
       setMessages(data);
     } catch (err) {
@@ -36,7 +36,7 @@ function Chatbot({ onClose }) {
 
   const handleClear = async () => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/messages?userId=${userId}`, {
+      await fetch(`https://nilesh-portfolio.up.railway.app/api/messages?userId=${userId}`, {
         method: "DELETE",
       });
       setMessages([]);
@@ -55,7 +55,7 @@ function Chatbot({ onClose }) {
     setLoading(true);
 
     try {
-      await fetch("http://127.0.0.1:8000/api/content", {
+      await fetch("https://nilesh-portfolio.up.railway.app/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, userId }),
