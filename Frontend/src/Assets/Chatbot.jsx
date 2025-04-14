@@ -26,7 +26,7 @@ function Chatbot({ onClose }) {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch(`https://portfolio-amber-ten-47.vercel.app/api/messages?userId=${userId}`);
+      const res = await fetch(`http://127.0.0.1:8000/api/messages?userId=${userId}`);
       const data = await res.json();
       setMessages(data);
     } catch (err) {
@@ -36,7 +36,7 @@ function Chatbot({ onClose }) {
 
   const handleClear = async () => {
     try {
-      await fetch(`https://portfolio-amber-ten-47.vercel.app/api/messages?userId=${userId}`, {
+      await fetch(`http://127.0.0.1:8000/api/messages?userId=${userId}`, {
         method: "DELETE",
       });
       setMessages([]);
@@ -55,7 +55,7 @@ function Chatbot({ onClose }) {
     setLoading(true);
 
     try {
-      await fetch("https://portfolio-amber-ten-47.vercel.app/api/content", {
+      await fetch("http://127.0.0.1:8000/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, userId }),
@@ -119,7 +119,14 @@ function Chatbot({ onClose }) {
         <Trash2 color="white" size={20} />
       </button>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <form onSubmit={handleSubmit} 
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          handleSubmit(e);
+        }
+      }}
+      className="flex flex-col gap-2">
         <textarea
           className="border border-gray-600 bg-gray-800 text-white rounded-xl p-3 min-h-[80px] resize-none text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Ask me anything..."
