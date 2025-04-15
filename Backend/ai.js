@@ -25,7 +25,7 @@ async function main(messages) {
     // Gemini only accepts 'user' or 'model'
     const geminiRole = role === 'user' ? 'user' :
                        role === 'ai' ? 'model' :
-                       'system'; // Treat system/custom as 'system' input to set context
+                       'user'; // Treat system/custom as 'system' input to set context
 
     return {
       role: geminiRole,
