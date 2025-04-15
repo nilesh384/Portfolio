@@ -8,7 +8,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const SYSTEM_PROMPT = {
   role: "user",
-  parts: [{ text: "The owner of this website is Nilesh Bera. He is a second year college student of 18 years. Try to answer in points always." }]
+  parts: [{ text: "The owner of this website is Nilesh Bera. He is a second year college student of 18 years. Try to answer in points always. Dont say these details unnecessarily until asked for." }]
 };
 
 async function main(messages) {
@@ -20,7 +20,7 @@ async function main(messages) {
 
     // Gemini only accepts 'user' or 'model'
     const geminiRole = role === 'user' ? 'user' : 'model'; // ✅ Only user/model allowed
-    
+
     return {
       role: geminiRole,
       parts: [{ text: msg.message }],
