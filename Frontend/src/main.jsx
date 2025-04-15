@@ -7,6 +7,8 @@ import Landing from './Pages/Landing.jsx'
 
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom'
 import ContactMe from './Pages/ContactMe.jsx'
+import About from './Pages/About.jsx'
+import Projects from './Pages/Projects.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,8 +16,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route index element={<Landing />} />
       <Route path="contact" element={<ContactMe/>} />
-      {/* <Route path="contact" element={<Contact />} /> */}
-      {/* <Route path="user/:userid" element={<User />} /> */}
+      <Route path="about" element={<About />} />
+      <Route path="projects" element={<Projects />} />
       {/* <Route loader={GithubLoader} path="github" element={<Github />} /> */}
     </Route>
   )

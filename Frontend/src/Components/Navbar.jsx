@@ -32,7 +32,7 @@ const Navbar = () => {
           <a href="/about" className="hover:text-purple-400 hover:scale-110 transition duration-200">About</a>
           <a href="/projects" className="hover:text-purple-400 hover:scale-110 transition duration-200">Projects</a>
           <a href="/contact" className="hover:text-purple-400 hover:scale-110 transition duration-200">Contact Me</a>
-          <a href="/login" className="hover:text-purple-400 hover:scale-110 transition duration-200">Login</a>
+          
         </div>
       </nav>
     </header>
