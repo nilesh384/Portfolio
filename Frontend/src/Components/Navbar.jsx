@@ -1,40 +1,41 @@
-// const Navbar = () => {
-//     return (
-//         <>
-//             {/* Navbar */}
-//       <header>
-//         <nav className="flex justify-around items-center h-14 bg-gradient-to-r from-nav-gradient-start to-nav-gradient-end">
-//           <div className="text-3xl ml-[-3rem] hover:cursor-pointer">Portfolio</div>
-//           <div className="flex justify-center items-center space-x-8 mr-[-5em]">
-//             <a href="/" className="hover:text-indigo-400 hover:scale-110 duration-100">Home</a>
-//             <a href="/about" className="hover:text-indigo-400 hover:scale-110 duration-100">About</a>
-//             <a href="/projects" className="hover:text-indigo-400 hover:scale-110 duration-100">Projects</a>
-//             <a href="/contact" className="hover:text-indigo-400 hover:scale-110 duration-100">Contact Me</a>
-//             <a href="/login" className="hover:text-indigo-400 hover:scale-110 duration-100">Login</a>
-//           </div>
-//         </nav>
-//       </header>
-//         </>
-//     )
-// }
-
-// export default Navbar
-
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header>
-      <nav className="w-full mb-0.5 sticky top-0 z-50 flex justify-between items-center h-16 px-10 bg-gradient-to-r from-[#080716] via-[#120f37] to-[#11111d] text-white shadow-md">
-        <div className="text-3xl font-bold hover:cursor-pointer">Portfolio</div>
-        <div className="flex space-x-8 text-lg font-medium">
-          <a href="/" className="hover:text-purple-400 hover:scale-110 transition duration-200">Home</a>
-          <a href="/about" className="hover:text-purple-400 hover:scale-110 transition duration-200">About</a>
-          <a href="/projects" className="hover:text-purple-400 hover:scale-110 transition duration-200">Projects</a>
-          <a href="/contact" className="hover:text-purple-400 hover:scale-110 transition duration-200">Contact Me</a>
-          
+    <header className="w-full sticky top-0 z-50 bg-gradient-to-r from-[#080716] via-[#120f37] to-[#11111d] text-white shadow-md">
+      <nav className="flex justify-between items-center px-6 py-4 md:px-10">
+        <div className="text-2xl font-bold">Portfolio</div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-8 text-lg font-medium">
+          <Link to="/" className="hover:text-purple-400 transition duration-200">Home</Link>
+          <Link to="/about" className="hover:text-purple-400 transition duration-200">About</Link>
+          <Link to="/projects" className="hover:text-purple-400 transition duration-200">Projects</Link>
+          <Link to="/contact" className="hover:text-purple-400 transition duration-200">Contact Me</Link>
+        </div>
+
+        {/* Hamburger Icon */}
+        <div className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <div className="space-y-1 cursor-pointer">
+            <span className="block w-6 h-0.5 bg-white"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden px-6 pb-4 space-y-3 text-lg font-medium">
+          <Link to="/" onClick={() => setIsOpen(false)} className="block hover:text-purple-400">Home</Link>
+          <Link to="/about" onClick={() => setIsOpen(false)} className="block hover:text-purple-400">About</Link>
+          <Link to="/projects" onClick={() => setIsOpen(false)} className="block hover:text-purple-400">Projects</Link>
+          <Link to="/contact" onClick={() => setIsOpen(false)} className="block hover:text-purple-400">Contact Me</Link>
+        </div>
+      )}
     </header>
   );
 };
