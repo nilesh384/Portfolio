@@ -9,7 +9,7 @@ const Footer = () => {
           <a href="#" className="hover:text-purple-400 transition">Your Ads Privacy Choices</a>
         </div>
         <p className="text-gray-400 text-sm">
-          © 1996-2024, Codex.com, Inc. or its affiliates
+          portfolio-nilesh-47.vercel.app
         </p>
       </div>
     </footer>

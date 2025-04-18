@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Spline from '@splinetool/react-spline';
 
 const Landing = () => {
   const typedElement = useRef(null);
@@ -23,6 +24,7 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-black text-white font-poppins relative scroll-smooth">
+  
       {/* Floating Resume Button */}
       {/* <a
         href="/assets/resume.pdf" // Replace with your actual resume path

@@ -17,36 +17,37 @@ const About = () => {
           </h1>
           <p className="text-gray-300 text-lg max-w-3xl">
             Hey there! 👋 I’m{" "}
-            <span className="text-highlight font-semibold">Nilesh Bera</span>, a passionate second-year college student, developer, and problem solver who loves building real-world solutions with clean and scalable code.
+            <span className="text-highlight font-semibold">Nilesh Bera</span>, a passionate second-year college student, developer, and problem solver from Kolkata, West Bengal, who loves building real-world solutions with clean and scalable code.
           </p>
 
           <div className="space-y-6">
             <div>
               <h2 className="text-2xl text-purple-300 font-semibold mb-1">
-                👨‍💻 Who am I?
+                @  Who am I?
               </h2>
               <p className="text-gray-400">
-                A full-stack and Android developer diving deep into AI and backend systems. I'm all about using tech to solve real problems in education, health, and daily productivity.
+                A full-stack developer diving deep into backend systems and other technologies. I'm all about using tech to solve real problems in education, health, and daily productivity.
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl text-purple-300 font-semibold mb-1">
-                🚀 What Drives Me?
+                @  What Drives Me?
               </h2>
               <ul className="list-disc list-inside text-gray-400 space-y-1">
                 <li>Hackathons & fast-paced team projects</li>
-                <li>Shipping usable products quickly</li>
+                <li>Working on real world application based projects</li>
+                <li>Learning new technologies</li>
                 <li>Continuous learning & building</li>
               </ul>
             </div>
 
             <div>
               <h2 className="text-2xl text-purple-300 font-semibold mb-1">
-                🌐 Tech Philosophy
+                @  Tech Philosophy
               </h2>
               <p className="text-gray-400">
-                Code should be clean, scalable, and fast. Whether it's a chatbot using Gemini API or a real-time app with Socket.io, I like building systems that work reliably under pressure.
+                Code should be clean, scalable, and fast. Project should be organised. Whether it's a chatbot using Gemini API or a full-stack web app, I like building systems that work reliably under pressure.
               </p>
             </div>
           </div>
