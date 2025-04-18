@@ -12,7 +12,7 @@ import Projects from './Pages/Projects.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-
+    
     <Route path="/" element={<Layout />}>
       <Route index element={<Landing />} />
       <Route path="contact" element={<ContactMe/>} />

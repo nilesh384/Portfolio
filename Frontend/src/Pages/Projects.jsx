@@ -93,7 +93,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white px-4 sm:px-6 lg:px-20 py-16 font-poppins">
+    <div className="min-h-screen bg-black text-white px-4 sm:px-6 lg:px-20 py-10 font-poppins">
       <h2
         className="text-4xl font-bold text-purple-400 text-center mb-12"
         data-aos="fade-up"

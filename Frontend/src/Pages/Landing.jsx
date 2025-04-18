@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Spline from '@splinetool/react-spline';
+import Spline from "@splinetool/react-spline";
 
 const Landing = () => {
   const typedElement = useRef(null);
@@ -19,12 +19,11 @@ const Landing = () => {
   }, []);
 
   const scrollToSkills = () => {
-    document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="min-h-screen bg-black text-white font-poppins relative scroll-smooth">
-  
       {/* Floating Resume Button */}
       {/* <a
         href="/assets/resume.pdf" // Replace with your actual resume path
@@ -68,8 +67,8 @@ const Landing = () => {
         <div className="flex justify-center mt-[-2rem] lg:mt-0">
           <button
             onClick={scrollToSkills}
-            className="animate-bounce text-purple-400 text-3xl mt-[-30px] hover:scale-110 transition-all"
-            aria-label="Scroll to Skills"
+            className="animate-bounce text-purple-400 text-3xl mt-[-130px] hover:scale-110 hover:cursor-pointer transition-all"
+            aria-label="Scroll to Work"
           >
             ↓
           </button>
@@ -81,6 +80,7 @@ const Landing = () => {
         <section className="max-w-6xl mx-auto px-4 sm:px-8 mt-20 min-h-screen">
           <span
             className="text-gray-400 text-base sm:text-lg"
+            id="work"
             data-aos="fade-up"
           >
             What I have done so far
@@ -95,41 +95,31 @@ const Landing = () => {
           <div className="relative border-l-4 border-purple-600 mt-12 pl-6 space-y-12">
             {[
               {
-                title: "Frontend Developer Intern",
-                org: "XYZ Tech Solutions | Jan 2024 – Mar 2024",
+                title: "Technical Team Member",
+                org: {
+                  name: "Open Source Community",
+                  logo: "https://avatars.githubusercontent.com/u/70404266?s=280&v=4", 
+                  duration: "Mar 2025 – Present",
+                },
                 points: [
                   "Built responsive UIs using React and Tailwind CSS.",
                   "Implemented dynamic routing with React Router.",
-                  "Collaborated in a team of 5 using Git and GitHub.",
+                  "Collaborated in a team of developers using Git and GitHub.",
                 ],
               },
-              {
-                title: "Backend Developer (Freelance)",
-                org: "Self-employed | Apr 2024 – Present",
-                points: [
-                  "Built secure REST APIs using Express.js and MongoDB.",
-                  "Integrated JWT-based authentication and authorization.",
-                  "Optimized performance with database indexing and caching.",
-                ],
-              },
-              {
-                title: "Android App Developer",
-                org: "Hackathon Projects | 2023 – 2024",
-                points: [
-                  "Created apps using Java & Kotlin with Firebase backend.",
-                  "Designed intuitive UI/UX for health and education apps.",
-                  "Won 2nd place in Smart India Hackathon regional round.",
-                ],
-              },
-              {
-                title: "AI Study Platform (StudySync)",
-                org: "Personal Project | 2025",
-                points: [
-                  "Built a collaborative AI study tool with PDF summarizer and group task tracking.",
-                  "Used React, Socket.IO, Node.js, MongoDB, Gemini API.",
-                  "Implemented gamification with leaderboards and streaks.",
-                ],
-              },
+              // {
+              //   title: "Backend Developer (Freelance)",
+              //   org: {
+              //     name: "XYZ Tech Solutions",
+              //     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png", // Replace with actual logo
+              //     duration: "Jan 2024 – Mar 2024",
+              //   },
+              //   points: [
+              //     "Built secure REST APIs using Express.js and MongoDB.",
+              //     "Integrated JWT-based authentication and authorization.",
+              //     "Optimized performance with database indexing and caching.",
+              //   ],
+              // },
             ].map(({ title, org, points }, idx) => (
               <div className="relative" data-aos="fade-up" key={idx}>
                 <div className="absolute w-4 h-4 bg-purple-500 rounded-full -left-2.5 top-1.5 shadow-md" />
@@ -137,7 +127,16 @@ const Landing = () => {
                   <h2 className="text-lg sm:text-xl font-semibold text-white">
                     {title}
                   </h2>
-                  <p className="text-gray-300 text-sm mb-2">{org}</p>
+                  <div className="flex items-center space-x-2 mb-2 pt-0.5">
+                    <img
+                      src={org.logo}
+                      alt={org.name}
+                      className="w-5 h-5 object-contain"
+                    />
+                    <p className="text-gray-300 text-sm">
+                      {org.name} | {org.duration}
+                    </p>
+                  </div>
                   <ul className="list-disc ml-6 text-gray-400 space-y-1 text-sm">
                     {points.map((point, i) => (
                       <li key={i}>{point}</li>

@@ -71,7 +71,7 @@ app.delete("/api/messages", async (req, res) => {
       return res.status(400).json({ error: "userId is required" });
     }
 
-    await Data.deleteMany({ userId, role: { $ne: "system" } });
+    await Data.deleteMany({ userId});
     res.status(200).json({ message: "All messages deleted" });
   } catch (error) {
     console.error("❌ Error in DELETE /api/messages:", error);

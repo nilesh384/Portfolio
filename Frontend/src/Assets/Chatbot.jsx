@@ -125,7 +125,7 @@ function Chatbot({ onClose }) {
           e.preventDefault();
           handleSubmit(e);
         }
-      }}
+        }}
       className="flex flex-col gap-2">
         <textarea
           className="border border-gray-600 bg-gray-800 text-white rounded-xl p-3 min-h-[80px] resize-none text-base placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
